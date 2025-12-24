@@ -1,19 +1,39 @@
 import './App.css'
 import ProductCard from './components/productCard'
+import { MdBluetoothAudio, MdOutlineReviews } from "react-icons/md";
+import { BsGraphDown } from "react-icons/bs";
+import { FaRegBookmark, FaRegUser } from "react-icons/fa";
+import { TbDeviceSpeaker } from "react-icons/tb";
+
 function App() {
 
   return (
-    <div>
-      <ProductCard name="Audio Setup" 
-      price="3250/-" 
-      description="kjvkj;vnd;kjNjklkjlczkjhcxjkxcjokldsljkcxlmadjvhjbvsj,bhk,jbkvsjbk,hbjbvj,h ,jb" 
-      img="https://d2v5dzhdg4zhx3.cloudfront.net/web-assets/images/storypages/primary/ProductShowcasesampleimages/JPEG/Product+Showcase-1.jpg" />
+    <div className="w-full h-screen flex"> 
+    <div className='w-[400px] h-full bg-green-200'>
 
-      <ProductCard name="perfume bottle"
-      price="5615/-"
-      description="hvbujhbj,vbsdhjhb j,bvghvsdjugdsbhjhbjsdvkgh,jbujhycdbujdsjhb,jsdv"
-      img="https://tse2.mm.bing.net/th/id/OIP.LDnaUPxTX1lvxzG3FjQv4QHaHa?cb=ucfimg2&ucfimg=1&rs=1&pid=ImgDetMain&o=7&rm=3" />
-      
+      <button className='w-full h-[40px] text-[25px] font-bold flex justify-center items-center bg-red-400' ><BsGraphDown />
+        Dashboard
+      </button>
+      <button className='w-full h-[40px] text-[25px] font-bold flex justify-center items-center' >
+        <FaRegBookmark />
+        Bookings
+      </button>
+      <button className='w-full h-[40px] text-[25px] font-bold flex justify-center items-center' >
+        <TbDeviceSpeaker />
+        Items
+      </button>
+      <button className='w-full h-[40px] text-[25px] font-bold flex justify-center items-center' >
+        <MdOutlineReviews/>
+        Reviews
+      </button>
+      <button className='w-full h-[40px] text-[25px] font-bold flex justify-center items-center' >
+        <FaRegUser/>
+        Users
+      </button>
+
+        </div>
+    <div className='w-full bg-red-900' >
+    </div>
     </div>
   )
 }
