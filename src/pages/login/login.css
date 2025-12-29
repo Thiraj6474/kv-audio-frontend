@@ -1,0 +1,8 @@
+.bg-picture{
+    background-image: url("https://cdn.pixabay.com/photo/2020/02/28/20/32/mixer-4888558_1280.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+    position: relative;
+}
