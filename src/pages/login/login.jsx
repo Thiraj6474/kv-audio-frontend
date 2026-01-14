@@ -20,6 +20,8 @@ export default function LoginPage(){
             console.log(res)
             toast.success("Login Success")
             const user = res.data.user
+            localStorage.setItem("token",res.data.token)
+
             if(user.type ==="admin"){
                 navigate("/admin/")
                 
