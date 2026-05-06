@@ -2,29 +2,19 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { CiCirclePlus } from "react-icons/ci";
 import { FaEdit, FaTrashAlt } from "react-icons/fa";
-import { Link } from "react-router-dom";
-
-const sampleArr = [
-  {
-    key: "P001",
-    name: "Wireless Headphones",
-    price: 15999,
-    category: "audio",
-    dimentions: "20 x 18 x 8 cm",
-    availability: true
-  }
-];
-
+import { Link, useNavigate } from "react-router-dom";
 
 
 export default function AdminItemPage() {
-  const [items, setItems] = useState(sampleArr);
+  const [items, setItems] = useState([]);
   const [itemsLoaded,setItemsLoaded] = useState(false);
+  const navigate = useNavigate()
+
 
   useEffect(() => {
     if(!itemsLoaded){
         const token = localStorage.getItem("token");
-        axios.get("http://localhost:3000/api/products", {
+        axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/products`, {
             
         headers: { Authorization: `Bearer ${token}` },
       })
@@ -48,7 +38,7 @@ export default function AdminItemPage() {
     if (!window.confirm("Are you sure you want to delete this product?")) return;
     setItems(items.filter((item) => item.key !== key));
     const token = localStorage.getItem("token");
-    axios.delete(`http://localhost:3000/api/products/${key}`,{
+    axios.delete(`${import.meta.env.VITE_BACKEND_URL}/api/products/${key}`,{
         headers:{Authorization:`Bearer ${token}`},
     }).then(
         (res)=>{
@@ -106,16 +96,18 @@ export default function AdminItemPage() {
                   </span>
                 </td>
                 <td className="p-3 text-center space-x-2">
-                  <Link
-                    to={`/admin/items/edit/${product.key}`}
-                    className="px-3 py-1 text-sm rounded bg-blue-600 text-white hover:bg-blue-700 transition"
-                  >
+                  
+                  <button className="px-3 py-1 text-sm rounded bg-blue-600 text-white hover:bg-blue-800 transition" 
+                  onClick={()=>{
+                    navigate("/admin/items/edit",{state:product})
+                  }}>
                     <FaEdit className="inline mr-1"/>
                     Edit
-                  </Link>
+                  </button>
+                  
                   <button
                     onClick={() => handleDelete(product.key)}
-                    className="px-3 py-1 text-sm rounded bg-red-600 text-white hover:bg-red-700 transition"
+                    className="px-3 py-1 text-sm rounded bg-red-600 text-white hover:bg-red-800 transition"
                   >
                     <FaTrashAlt className="inline mr-1"/>
                     Delete
