@@ -1,0 +1,3 @@
+anon key - eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inphamd2aG9iZGZzbmNybGlmcmx0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzgxMTY2OTQsImV4cCI6MjA5MzY5MjY5NH0.4YF1Dp_58CBUSmo6cI8-MfSe2bn_DW_b_yoTwT8pICQ
+
+project url - https://zajgvhobdfsncrlifrlt.supabase.co
