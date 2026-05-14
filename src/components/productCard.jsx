@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export default function ProductCard({ items }) {
 
     return (
@@ -48,16 +50,16 @@ export default function ProductCard({ items }) {
                         {items.availability ? "In Stock" : "Out of Stock"}
                     </span>
                 </div>
-                <div className="p-4 h-[100px]  border-t border-gray-200">
+                <div className="p-4 h-[100px]  border-t border-gray-200 ">
 
                 
 
                 {/* Button */}
-                <button
-                    className="mt-4 w-full bg-[#15cdb0] text-white py-2 rounded-lg hover:bg-[#13b39a] transition"
+                <Link
+                    to={"/product/"+items.key} className="mt-4 w-full flex justify-center items-center bg-[#15cdb0] text-white py-2 rounded-lg hover:bg-[#13b39a] transition"
                 >
                     View Details
-                </button>
+                </Link>
                 </div>
 
             </div>
