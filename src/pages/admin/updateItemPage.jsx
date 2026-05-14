@@ -2,6 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { useLocation, useNavigate } from "react-router-dom";
+import mediaUpload from "../../utils/mediaUpload";
 
 export default function UpdateItemPage() {
 
@@ -14,10 +15,28 @@ export default function UpdateItemPage() {
   const [productCategory, setProductCategory] = useState(location.state.category);
   const [productDimensions, setProductDimensions] = useState(location.state.dimentions);
   const [productDescription, setProductDescription] = useState(location.state.description);
+  const [productImage, setProductImages] = useState([])
   const navigate = useNavigate()
   
 
-  async function handleAddItem(){
+  async function handleUpdateItem(){
+
+    let  updateImages = location.state.image
+
+    if(productImage.length > 0){
+      const promises = []
+      
+          for(let i = 0 ; i<productImage.length ; i++){
+            console.log(productImage[i])
+            const promise = mediaUpload(productImage[i])
+            promises.push(promise);
+          }
+
+          updateImages = await Promise.all(promises);
+      
+    }
+
+
     console.log(productKey,productName,productPrice,productCategory,productDimensions,productDescription)
 
     const token = localStorage.getItem("token")
@@ -29,7 +48,8 @@ export default function UpdateItemPage() {
             price : productPrice,
             category : productCategory,
             dimentions : productDimensions,
-            description : productDescription
+            description : productDescription,
+            image : updateImages,
         },{
             headers : {
                 Authorization : "Bearer " + token
@@ -102,7 +122,15 @@ export default function UpdateItemPage() {
           rows={3}
         />
 
-        <button onClick={handleAddItem} className="bg-blue-600 text-white p-2 rounded hover:bg-blue-700">
+        <input
+          type="file"
+          multiple onChange={(e) => {setProductImages(e.target.files)}}
+          className="border p-2 rounded w-full"
+        />
+
+
+
+        <button onClick={handleUpdateItem} className="bg-blue-600 text-white p-2 rounded hover:bg-blue-700">
           Update
         </button>
         <button onClick={()=>{navigate("/admin/items")}} className="bg-red-600 text-white p-2 rounded hover:bg-red-700">
